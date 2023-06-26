@@ -175,6 +175,8 @@ COMMON_META_REF = \
                                                Equation     = '(1 / BWhzPixel) / ACCfactor'),
 
          # TIMING_PARAMETERS
+         RepetitionTime                 = dict(TR           = 'VisuAcqRepetitionTime',
+                                               Equation     = 'TR/1000'),
          EchoTime                       = dict(TE           = 'VisuAcqEchoTime',
                                                Equation     = 'np.array(TE)/1000'),
          InversionTime                  = 'VisuAcqInversionTime',
@@ -201,9 +203,7 @@ COMMON_META_REF = \
 
 
 FMRI_META_REF = \
-    dict(RepetitionTime                 = dict(TR           = 'VisuAcqRepetitionTime',
-                                               Equation     = 'TR/1000'),
-         VolumeTiming                   = dict(TR           = 'VisuAcqRepetitionTime',
+    dict(VolumeTiming                   = dict(TR           = 'VisuAcqRepetitionTime',
                                                NR           = 'PVM_NRepetitions',
                                                Equation     = '(np.arange(NR)*(TR/1000)).tolist()'),
          TaskName                       = None,

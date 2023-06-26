@@ -262,7 +262,12 @@ def meta_check_source(key_string, acqp, method, visu_pars):
     key_exist = [key_string in p.parameters.keys() for p in pool]
     for i, ans in enumerate(key_exist):
         if ans:
-            return get_value(pool[i], key_string)
+            value = get_value(pool[i], key_string)
+            if value == 'On':
+                value = 'true'
+            elif value == 'Off':
+                value = 'false'
+            return value
     return None
 
 
@@ -366,6 +371,13 @@ def get_bids_ref_obj(ref_path, row):
                             'magnitude1', 'magnitude2']:
             if 'fmap' in ref_data.keys():
                 for k, v in ref_data['fmap'].items():
+                    if k in ref.keys():
+                        raise InvalidApproach('Duplicated key is found at func: {}'.format(k))
+                    else:
+                        ref[k] = v
+        if row.modality.casefold() in ['mpm', 'mtr', 'mt']:
+            if 'mt' in ref_data.keys():
+                for k, v in ref_data['mt'].items():
                     if k in ref.keys():
                         raise InvalidApproach('Duplicated key is found at func: {}'.format(k))
                     else:

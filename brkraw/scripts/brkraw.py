@@ -355,9 +355,10 @@ def main():
                   '(BIDS v{}): {}'.format(_supporting_bids_ver, json_fname))
             with open(json_fname, 'w') as f:
                 import json
-                from ..lib.reference import COMMON_META_REF, FMRI_META_REF, FIELDMAP_META_REF
+                from ..lib.reference import COMMON_META_REF, FMRI_META_REF, MT_META_REF, FIELDMAP_META_REF
                 ref_dict = dict(common=COMMON_META_REF,
                                 func=FMRI_META_REF,
+                                mt=MT_META_REF,
                                 fmap=FIELDMAP_META_REF)
                 json.dump(ref_dict, f, indent=4)
 

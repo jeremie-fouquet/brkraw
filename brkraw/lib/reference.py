@@ -229,6 +229,10 @@ FIELDMAP_META_REF = \
     dict(IntendedFor                    = '',
          )
 
+MT_META_REF = \
+    dict(MTState = 'PVM_MagTransOnOff'
+        ) 
+
 DATASET_DESC_REF = \
     dict(Name='',
          BIDSVersion='1.2.2',

@@ -154,6 +154,13 @@ def get_value(pars, key):
     else:
         return pars.parameters[key]
 
+def set_value(pars, key, value):
+    if key not in pars.parameters.keys():
+        print('Created a key')
+        pars.parameters[key] = value
+    else:
+        pars.parameters[key] = value
+    return pars
 
 def is_all_element_same(listobj):
     if listobj is None:
@@ -262,6 +269,8 @@ def meta_check_express(value, acqp, method, visu_pars):
         if k != 'Equation':
             exec('global {}'.format(k))
             val = meta_get_value(v, acqp, method, visu_pars)
+            if isinstance(val, str):
+                val = None
             exec('{} = {}'.format(k, val))
     try:
         exec("output = {}".format(value['Equation']), globals(), lcm)
